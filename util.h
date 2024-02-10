@@ -13,20 +13,70 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-
-
-
-
-
+  // Initailize the set contain the intersections of s1 and s2
+  std::set<T> output;
+  // Initailize interators for s1/s2
+  typename std::set<T>::iterator iter1 = s1.begin();
+  typename std::set<T>::iterator iter2 = s2.begin();
+  // Creates case to end the loop
+  while (iter1 != s1.end() && iter2 != s2.end())
+  {
+    // if and else if case checks for inequality and
+    // continues iterating if unequal
+    if(*iter1 < *iter2)
+    {
+      ++iter1;
+    }
+    else if(*iter1 > *iter2)
+    {
+      ++iter2;
+    }
+    // if values in s1 and s2 are equal, inserts values
+    // into output set 
+    else
+    {
+      output.insert(*iter1);
+      ++iter1;
+      ++iter2;
+    }
+  }
+  return output;
 }
 template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
-
-
-
-
-
+  // Initailize the set contain the intersections of s1 and s2
+  std::set<T> output;
+  // Initailize interators for s1/s2
+  typename std::set<T>::iterator iter1 = s1.begin();
+  typename std::set<T>::iterator iter2 = s2.begin();
+  // Creates case to end the loop
+  while (iter1 != s1.end() && iter2 != s2.end())
+  {
+    // adds values from s1 and s2
+    if(*iter1 < *iter2)
+    {
+      output.insert(*iter1);
+      ++iter1;
+    }
+    else if(*iter1 > *iter2)
+    {
+      output.insert(*iter2);
+      ++iter2;
+    }
+    // if values in s1 and s2 are equal, inserts values
+    // into output set 
+    else
+    {
+      output.insert(*iter1);
+      ++iter1;
+      ++iter2;
+    }
+  }
+  // insert last elements
+  output.insert(iter1, s1.end());
+  output.insert(iter2, s2.end());
+  return output;
 }
 
 /***********************************************/
